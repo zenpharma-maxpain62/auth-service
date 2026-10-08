@@ -19,13 +19,13 @@ jobs:
 
       - name: setup java
         uses: actions/setup-java@v6
-        distribution: 'temurin'
         with:
+          distribution: 'temurin'
           java-version: 17
           cache: maven
 
       - name: compile build test
-        run: mvn varify --no-transfer-progress 
+        run: mvn verify --no-transfer-progress 
 
       - name: sonarqube - SAST + code quality
         uses: SonarSource/sonarqube-scan-action@da4450e400cebf84292b12a85d4ca0080ae2938c
