@@ -110,7 +110,11 @@ jobs:
           git pull
 
           export IMAGE_TAG=${{ steps.fetch-tag.outputs.tag }}
-          export CURRENT_IMAGE_TAG=$(grep tag envs/dev/values-auth-service.yaml | awk '{print $2}')
+          export CURRENT_IMAGE_TAG=$(grep "tag:" envs/dev/values-auth-service.yaml | awk '{print $2}')
+
+          echo "Current image tag: $CURRENT_IMAGE_TAG"
+          echo "New image tag: $IMAGE_TAG"
+          
           sed -i "s/$CURRENT_IMAGE_TAG/$IMAGE_TAG/g" envs/dev/values-auth-service.yaml
 
           git config user.name  "maxpain62"
